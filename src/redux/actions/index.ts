@@ -1,0 +1,15 @@
+export enum HeroesActions {
+  GET_HEROES = "[Heroes] GET_HEROES",
+  GET_HEROES_SUCCESS = "[Heroes] GET_HEROES_SUCCESS",
+  GET_HERO_ERROR = "[Heroes] GET_HEROES_ERROR",
+}
+
+export enum SelectedHeroActions {
+  GET_SELECTED_HERO = "[HERO] GET_SELECTED_HERO",
+  GET_SELECTED_HERO_SUCCESS = "[HERO] GET_SELECTED_HERO_SUCCESS",
+  GET_SELECTED_HERO_ERROR = "[HERO] GET_SELECTED_HERO_ERROR",
+}
+
+export enum MessageActions {
+  ADD_MESSAGE = "[Messages] ADD_MESSAGE",
+}
