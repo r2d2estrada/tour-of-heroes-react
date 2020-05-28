@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import Header from "../components/Header";
 import Dashboard from "./Dashboard";
 import Heroes from "./Heroes";
+import HeroDetail from "./HeroDetail";
 
 const Routes: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const Routes: React.FC = () => {
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route path="/heroes" component={Heroes} />
+          <Route path="/heroes/:id" component={HeroDetail} />
         </Switch>
       </Container>
     </Router>

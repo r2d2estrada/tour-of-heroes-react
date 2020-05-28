@@ -26,20 +26,20 @@ function getHeroesError(): Action {
   };
 }
 
-function getSelectedHero() {
+function getSelectedHero(): Action {
   return {
     type: SelectedHeroActions.GET_SELECTED_HERO,
   };
 }
 
-function getSelectedHeroSuccess(hero: Hero | any) {
+function getSelectedHeroSuccess(hero: Hero | any): Action {
   return {
     type: SelectedHeroActions.GET_SELECTED_HERO_SUCCESS,
     data: hero,
   };
 }
 
-function getSelectedHeroError() {
+function getSelectedHeroError(): Action {
   return {
     type: SelectedHeroActions.GET_SELECTED_HERO_ERROR,
   };
