@@ -1,4 +1,5 @@
 .featured-hero {
+  cursor: pointer;
   &:hover {
     background-color: var(--primary);
     color: var(--white);
