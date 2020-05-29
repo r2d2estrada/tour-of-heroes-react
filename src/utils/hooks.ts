@@ -7,3 +7,9 @@ export const usePrevious = <T extends {}>(value: T): T | undefined => {
   });
   return ref.current;
 };
+
+export const useDocumentTitle = (value: string): void => {
+  useEffect(() => {
+    document.title = value;
+  });
+};

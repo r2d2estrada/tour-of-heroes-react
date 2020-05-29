@@ -6,7 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import Routes from "./containers/Routes";
 import configureStore from "./redux";
 
-const store = configureStore();
+export const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>

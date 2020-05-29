@@ -1,4 +1,3 @@
-import { map } from "rxjs/operators";
 import { HeroesActions, SelectedHeroActions } from ".";
 import { Action } from "..";
 import { Hero } from "../../models/hero";
@@ -51,7 +50,7 @@ export function getHeroesAction() {
     heroApi.getHeroes().subscribe({
       next: (response: Hero[]) => {
         dispatch(getHeroesSuccess(response));
-        dispatch(addMessage("fetch - Hero List"));
+        dispatch(addMessage("get - Hero List"));
       },
       error: (error: any) => {
         dispatch(getHeroesError());
@@ -64,19 +63,12 @@ export function getHeroesAction() {
 export function getSelectedHeroAction(id: number) {
   return function (dispatch: any) {
     dispatch(getSelectedHero());
-    const observer = heroApi
-      .getHeroes()
-      .pipe(map((response: Hero[]) => response.find((hero) => hero.id === id)));
-
-    observer.subscribe({
-      next: (response) => {
+    heroApi.getHero(id).subscribe({
+      next: (response: Hero) => {
         dispatch(getSelectedHeroSuccess(response));
-        dispatch(addMessage(`fetch - Hero Detail for ${response?.name}`));
+        dispatch(addMessage(`get - Hero - id: ${id}`));
       },
-      error: (error: any) => {
-        dispatch(getSelectedHeroError());
-        throw error;
-      },
+      error: () => dispatch(getSelectedHeroError()),
     });
   };
 }

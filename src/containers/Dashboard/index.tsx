@@ -5,6 +5,8 @@ import { getHeroesAction } from "../../redux/actions/hero.actions";
 import { Hero } from "../../models/hero";
 import { Observable } from "rxjs";
 import FeaturedHero from "./FeaturedHero";
+import Messages from "../../components/Messages";
+import { useDocumentTitle } from "../../utils/hooks";
 
 interface DashboardProps {
   heroes: Hero[] | any;
@@ -13,6 +15,8 @@ interface DashboardProps {
 
 const Dashboard: React.FC<DashboardProps> = ({ heroes, getHeroes }) => {
   const [featuredHeroes, setFeaturedHeroes] = useState([]);
+
+  useDocumentTitle("Dashboard");
 
   useEffect(() => {
     if (heroes.length === 0) getHeroes();
@@ -35,6 +39,9 @@ const Dashboard: React.FC<DashboardProps> = ({ heroes, getHeroes }) => {
             <FeaturedHero hero={hero} />
           </div>
         ))}
+      </div>
+      <div className="mt-3">
+        <Messages />
       </div>
     </div>
   );

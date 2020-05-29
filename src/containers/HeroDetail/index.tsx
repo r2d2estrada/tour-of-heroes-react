@@ -5,6 +5,8 @@ import { State } from "../../redux";
 import { useParams } from "react-router-dom";
 import { getSelectedHeroAction } from "../../redux/actions/hero.actions";
 import HeroDetailCard from "./HeroDetailCard";
+import { useDocumentTitle } from "../../utils/hooks";
+import Messages from "../../components/Messages";
 
 interface HeroDetailProps {
   selectedHero: Hero | null;
@@ -17,6 +19,8 @@ const HeroDetail: React.FC<HeroDetailProps> = ({
 }) => {
   const { id } = useParams();
   const [hero, setHero]: Hero | any = useState(null);
+
+  useDocumentTitle(hero ? hero.name : "hero Detail");
 
   useEffect(() => {
     if (selectedHero === null || (selectedHero && selectedHero.id !== +id)) {
@@ -47,6 +51,9 @@ const HeroDetail: React.FC<HeroDetailProps> = ({
           />
         </>
       )}
+      <div className="mt-3">
+        <Messages />
+      </div>
     </div>
   );
 };

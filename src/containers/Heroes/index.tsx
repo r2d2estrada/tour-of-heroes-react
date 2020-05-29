@@ -4,6 +4,8 @@ import { State } from "../../redux";
 import { Hero } from "../../models/hero";
 import { getHeroesAction } from "../../redux/actions/hero.actions";
 import HeroList from "./HeroList";
+import { useDocumentTitle } from "../../utils/hooks";
+import Messages from "../../components/Messages";
 
 interface HeroesProps {
   getHeroes: any;
@@ -11,6 +13,8 @@ interface HeroesProps {
 }
 
 const Heroes: React.FC<HeroesProps> = ({ getHeroes, heroes }) => {
+  useDocumentTitle("Hero List");
+
   useEffect(() => {
     if (heroes.length === 0) {
       getHeroes();
@@ -21,7 +25,14 @@ const Heroes: React.FC<HeroesProps> = ({ getHeroes, heroes }) => {
     <div className="heroes">
       <h2>Heroes</h2>
       <hr />
-      <HeroList heroes={heroes} />
+      <div className="row">
+        <div className="col">
+          <HeroList heroes={heroes} />
+        </div>
+        <div className="col">
+          <Messages />
+        </div>
+      </div>
     </div>
   );
 };
