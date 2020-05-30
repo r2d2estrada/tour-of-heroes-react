@@ -7,6 +7,7 @@ import { Observable } from "rxjs";
 import FeaturedHero from "./FeaturedHero";
 import Messages from "../../components/Messages";
 import { useDocumentTitle } from "../../utils/hooks";
+import HeroSearch from "../../components/HeroSearch";
 
 interface DashboardProps {
   heroes: Hero[] | any;
@@ -39,6 +40,9 @@ const Dashboard: React.FC<DashboardProps> = ({ heroes, getHeroes }) => {
             <FeaturedHero hero={hero} />
           </div>
         ))}
+      </div>
+      <div className="mt-3">
+        <HeroSearch heroes={heroes} />
       </div>
       <div className="mt-3">
         <Messages />

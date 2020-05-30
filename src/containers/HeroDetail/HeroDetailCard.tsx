@@ -22,7 +22,7 @@ const HeroDetailCard: React.FC<HeroDetailCardProps> = ({
           <div className="form-inline">
             <div className="form-group">
               <label htmlFor="hero-id">ID:</label>
-              <span className="text-muted ml-3">{hero.name}</span>
+              <span className="text-muted ml-3">{hero.id}</span>
             </div>
             <div className="form-group ml-3">
               <label htmlFor="hero-name">NAME:</label>
