@@ -36,11 +36,11 @@ const HeroSearch: React.FC<{ heroes: Hero[] }> = ({ heroes }) => {
           items={searchResult}
           renderItem={(hero: Hero, highlighted: boolean) => (
             <div
+              key={hero.id}
               className="hero-search-item"
               style={{ borderBottom: "1px solid lightgray" }}
             >
               <Link
-                key={hero.id}
                 to={`/heroes/${hero.id}`}
                 style={{
                   padding: "1rem",
