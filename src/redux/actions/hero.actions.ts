@@ -114,13 +114,14 @@ export function getSelectedHeroAction(id: number) {
   };
 }
 
-export function addHeroAction(hero: Hero) {
-  return function (dispatch: any) {
+export function addHeroAction(hero: Hero): Observable<any> | any {
+  return function (dispatch: any): Observable<any> {
     dispatch(addHero());
     hero.id = genId();
     return heroApi.createHero(hero).pipe(
       tap((newHero) => {
         dispatch(addHeroSuccess(newHero));
+        dispatch(addMessage(`post - added hero - id: ${newHero.id}`));
       }),
       catchError((error) => {
         dispatch(addHeroError());

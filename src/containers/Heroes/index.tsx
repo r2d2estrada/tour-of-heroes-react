@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { State } from "../../redux";
 import { Hero } from "../../models/hero";
@@ -6,6 +6,7 @@ import { getHeroesAction } from "../../redux/actions/hero.actions";
 import HeroList from "./HeroList";
 import { useDocumentTitle } from "../../utils/hooks";
 import Messages from "../../components/Messages";
+import HeroListAddHero from "./HeroListAddHero";
 
 interface HeroesProps {
   getHeroes: any;
@@ -13,6 +14,8 @@ interface HeroesProps {
 }
 
 const Heroes: React.FC<HeroesProps> = ({ getHeroes, heroes }) => {
+  const [showAddModal, setShowAddModal] = useState(false);
+
   useDocumentTitle("Hero List");
 
   useEffect(() => {
@@ -21,9 +24,23 @@ const Heroes: React.FC<HeroesProps> = ({ getHeroes, heroes }) => {
     }
   }, [getHeroes, heroes]);
 
+  const toggleModal = (show: boolean = false): void => {
+    setShowAddModal(show);
+  };
+
   return (
     <div className="heroes">
-      <h2>Heroes</h2>
+      <div className="row">
+        <div className="col">
+          <h2>Heroes</h2>
+        </div>
+        <div className="col text-right">
+          <button className="btn btn-success" onClick={() => toggleModal(true)}>
+            Add Hero
+          </button>
+          <HeroListAddHero toggleModal={toggleModal} showModal={showAddModal} />
+        </div>
+      </div>
       <hr />
       <div className="row">
         <div className="col">
