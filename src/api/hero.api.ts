@@ -24,7 +24,7 @@ export class HeroApi {
   }
 
   createHero(hero: Hero): Observable<any> {
-    hero.id = genId("heroes");
+    hero.id = genId();
     return axios
       .post("/heroes", hero)
       .pipe(map(handleResponse), catchError(handleError));

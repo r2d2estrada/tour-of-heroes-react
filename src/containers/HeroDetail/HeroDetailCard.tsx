@@ -6,12 +6,14 @@ interface HeroDetailCardProps {
   hero: Hero;
   handleChange: any;
   handleSubmit: any;
+  isUpdating: boolean;
 }
 
 const HeroDetailCard: React.FC<HeroDetailCardProps> = ({
   hero,
   handleChange,
   handleSubmit,
+  isUpdating,
 }) => {
   const history = useHistory();
 
@@ -45,8 +47,12 @@ const HeroDetailCard: React.FC<HeroDetailCardProps> = ({
           >
             Cancel
           </button>
-          <button type="submit" className="btn btn-primary ml-3">
-            Save
+          <button
+            type="submit"
+            className="btn btn-primary ml-3"
+            disabled={isUpdating}
+          >
+            {isUpdating ? "Saving..." : "SAVE"}
           </button>
         </div>
       </form>

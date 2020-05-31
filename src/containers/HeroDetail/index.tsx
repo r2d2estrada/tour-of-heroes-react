@@ -1,9 +1,13 @@
 import React, { useEffect, useState, SyntheticEvent } from "react";
 import { connect } from "react-redux";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Hero } from "../../models/hero";
 import { State } from "../../redux";
-import { useParams } from "react-router-dom";
-import { getSelectedHeroAction } from "../../redux/actions/hero.actions";
+import {
+  getSelectedHeroAction,
+  modifyHeroAction,
+} from "../../redux/actions/hero.actions";
 import HeroDetailCard from "./HeroDetailCard";
 import { useDocumentTitle } from "../../utils/hooks";
 import Messages from "../../components/Messages";
@@ -11,14 +15,17 @@ import Messages from "../../components/Messages";
 interface HeroDetailProps {
   selectedHero: Hero | null;
   getSelectedHero: any;
+  modifyHero: any;
 }
 
 const HeroDetail: React.FC<HeroDetailProps> = ({
   selectedHero,
   getSelectedHero,
+  modifyHero,
 }) => {
   const { id } = useParams();
   const [hero, setHero]: Hero | any = useState(null);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   useDocumentTitle(hero ? hero.name : "hero Detail");
 
@@ -36,6 +43,17 @@ const HeroDetail: React.FC<HeroDetailProps> = ({
 
   const handleSubmit = (event: SyntheticEvent): void => {
     event.preventDefault();
+    setIsUpdating(true);
+    modifyHero(hero).subscribe({
+      next: () => {
+        toast.success("Hero updated!");
+        setIsUpdating(false);
+      },
+      error: () => {
+        toast.error("Oooops!");
+        setIsUpdating(false);
+      },
+    });
   };
 
   return (
@@ -48,6 +66,7 @@ const HeroDetail: React.FC<HeroDetailProps> = ({
             hero={hero}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
+            isUpdating={isUpdating}
           />
         </>
       )}
@@ -64,6 +83,7 @@ const mapStateToProps = (state: State) => ({
 
 const mapDispatchToProps = {
   getSelectedHero: getSelectedHeroAction,
+  modifyHero: modifyHeroAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeroDetail);

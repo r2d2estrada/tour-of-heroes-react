@@ -6,7 +6,6 @@ import "./HeroSearch.scss";
 
 const HeroSearch: React.FC<{ heroes: Hero[] }> = ({ heroes }) => {
   const history = useHistory();
-
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState(heroes);
 
@@ -60,8 +59,9 @@ const HeroSearch: React.FC<{ heroes: Hero[] }> = ({ heroes }) => {
             zIndex: 2,
             marginTop: 4,
             border: "1px solid lightgray",
+            borderRadius: 2,
             boxShadow: "0 2px 12px rgba(0, 0, 0, 0.1)",
-            background: "rgba(255, 255, 255, 0.9)",
+            background: "rgba(255, 255, 255)",
             fontSize: "90%",
             position: "fixed",
             overflow: "auto",

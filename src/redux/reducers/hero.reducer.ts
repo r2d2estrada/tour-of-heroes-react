@@ -8,8 +8,18 @@ export const heroes = (state: Hero[] = [], action: Action): Hero[] => {
       return state;
     case HeroesActions.GET_HEROES_SUCCESS:
       return action.data;
-    case HeroesActions.GET_HERO_ERROR:
+    case HeroesActions.GET_HEROES_ERROR:
       return state;
+    case HeroesActions.POST_ADD_HERO:
+      return state;
+    case HeroesActions.POST_ADD_HERO_SUCCESS:
+      return [...state, action.data];
+    case HeroesActions.POST_ADD_HERO_ERROR:
+      return state;
+    case SelectedHeroActions.PUT_MODIFY_HERO_SUCCESS:
+      return state.map((hero) =>
+        hero.id === action.data.id ? action.data : hero
+      );
     default:
       return state;
   }
@@ -26,6 +36,10 @@ export const selectedHero = (
       return action.data;
     case SelectedHeroActions.GET_SELECTED_HERO_ERROR:
       return state;
+    case SelectedHeroActions.PUT_MODIFY_HERO:
+      return state;
+    case SelectedHeroActions.PUT_MODIFY_HERO_SUCCESS:
+      return { ...state, ...action.data };
     default:
       return state;
   }

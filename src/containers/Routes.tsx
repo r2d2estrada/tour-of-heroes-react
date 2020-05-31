@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
+import { ToastContainer } from "react-toastify";
 import Header from "../components/Header";
 import Dashboard from "./Dashboard";
 import Heroes from "./Heroes";
@@ -17,6 +18,11 @@ const Routes: React.FC = () => {
           <Route path="/heroes/:id" component={HeroDetail} />
         </Switch>
       </Container>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={true}
+      />
     </Router>
   );
 };
