@@ -20,6 +20,8 @@ export const heroes = (state: Hero[] = [], action: Action): Hero[] => {
       return state.map((hero) =>
         hero.id === action.data.id ? action.data : hero
       );
+    case SelectedHeroActions.DELETE_REMOVE_HERO_SUCCESS:
+      return state.filter((hero) => hero.id !== action.data);
     default:
       return state;
   }

@@ -29,4 +29,10 @@ export class HeroApi {
       .post("/heroes", hero)
       .pipe(map(handleResponse), catchError(handleError));
   }
+
+  removeHero(id: number): Observable<any> {
+    return axios
+      .delete(`/heroes/${id}`)
+      .pipe(map(handleResponse), catchError(handleError));
+  }
 }

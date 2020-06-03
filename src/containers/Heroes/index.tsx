@@ -11,9 +11,10 @@ import HeroListAddHero from "./HeroListAddHero";
 interface HeroesProps {
   getHeroes: any;
   heroes: Hero[];
+  removeHero?: any;
 }
 
-const Heroes: React.FC<HeroesProps> = ({ getHeroes, heroes }) => {
+const Heroes: React.FC<HeroesProps> = ({ getHeroes, heroes, removeHero }) => {
   const [showAddModal, setShowAddModal] = useState(false);
 
   useDocumentTitle("Hero List");

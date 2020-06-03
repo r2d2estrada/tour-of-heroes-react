@@ -85,6 +85,25 @@ function modifyHeroError(): Action {
   };
 }
 
+function removeHero(): Action {
+  return {
+    type: SelectedHeroActions.DELETE_REMOVE_HERO,
+  };
+}
+
+function removeHeroSuccess(id: number): Action {
+  return {
+    type: SelectedHeroActions.DELETE_REMOVE_HERO_SUCCESS,
+    data: id,
+  };
+}
+
+function removeHeroError(): Action {
+  return {
+    type: SelectedHeroActions.DELETE_REMOVE_HERO_ERROR,
+  };
+}
+
 export function getHeroesAction() {
   return function (dispatch: any) {
     dispatch(getHeroes());
@@ -125,7 +144,7 @@ export function addHeroAction(hero: Hero): Observable<any> | any {
       }),
       catchError((error) => {
         dispatch(addHeroError());
-        return of(error);
+        throw of(error);
       })
     );
   };
@@ -141,7 +160,23 @@ export function modifyHeroAction(hero: Hero): Observable<any> | any {
       }),
       catchError((error) => {
         dispatch(modifyHeroError());
-        return of(error);
+        throw of(error);
+      })
+    );
+  };
+}
+
+export function removeHeroAction(id: number): Observable<any> | any {
+  return function (dispatch: any): Observable<any> {
+    dispatch(removeHero());
+    return heroApi.removeHero(id).pipe(
+      tap(() => {
+        dispatch(addMessage(`delete - removed hero - id: ${id}`));
+        dispatch(removeHeroSuccess(id));
+      }),
+      catchError((error) => {
+        dispatch(removeHeroError());
+        throw of(error);
       })
     );
   };
