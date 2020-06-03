@@ -21,4 +21,5 @@ export enum SelectedHeroActions {
 
 export enum MessageActions {
   ADD_MESSAGE = "[Messages] ADD_MESSAGE",
+  CLEAR_MESSAGES = "[Messages] CLEAR_MESSAGE",
 }

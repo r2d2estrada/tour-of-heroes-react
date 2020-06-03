@@ -28,8 +28,10 @@ const HeroSearch: React.FC<{ heroes: Hero[] }> = ({ heroes }) => {
 
   return (
     <div className="card hero-search">
-      <div className="card-body">
+      <div className="card-header">
         <h4>HeroSearch</h4>
+      </div>
+      <div className="card-body">
         <Autocomplete
           getItemValue={(hero: Hero) => hero.name}
           items={searchResult}

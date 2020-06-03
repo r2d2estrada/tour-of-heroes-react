@@ -7,3 +7,9 @@ export function addMessage(message: string): Action {
     data: message,
   };
 }
+
+export function clearMessages(): Action {
+  return {
+    type: MessageActions.CLEAR_MESSAGES,
+  };
+}

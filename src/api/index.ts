@@ -14,5 +14,5 @@ export function handleResponse(
 }
 
 export function handleError(error: AxiosError): Observable<AxiosError> {
-  return of(error);
+  throw of(error);
 }
