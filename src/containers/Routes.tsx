@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Dashboard from "./Dashboard";
 import Heroes from "./Heroes";
 import HeroDetail from "./HeroDetail";
+import NoMatch from "../components/NoMatch";
 
 const Routes: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const Routes: React.FC = () => {
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/heroes" component={Heroes} />
           <Route path="/heroes/:id" component={HeroDetail} />
+          <Route path="*" component={NoMatch} />
         </Switch>
       </Container>
       <ToastContainer

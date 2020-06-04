@@ -45,7 +45,7 @@ const HeroDetailCard: React.FC<HeroDetailCardProps> = ({
             className="btn btn-light"
             onClick={() => history.goBack()}
           >
-            Cancel
+            Back
           </button>
           <button
             type="submit"
