@@ -14,7 +14,7 @@ interface DashboardProps {
   getHeroes: Observable<Hero[]> | any;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ heroes, getHeroes }) => {
+export const Dashboard: React.FC<DashboardProps> = ({ heroes, getHeroes }) => {
   const [featuredHeroes, setFeaturedHeroes] = useState([]);
 
   useDocumentTitle("Dashboard");

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FeaturedHero should match snapshot 1`] = `
+<div>
+  <div
+    class="card featured-hero"
+  >
+    <div
+      class="card-body"
+    >
+      <h2
+        class="card-title text-center"
+      >
+        Test
+      </h2>
+    </div>
+  </div>
+</div>
+`;
