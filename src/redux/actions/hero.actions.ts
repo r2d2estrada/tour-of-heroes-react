@@ -150,7 +150,7 @@ export function addHeroAction(hero: Hero): Observable<any> | any {
   };
 }
 
-export function modifyHeroAction(hero: Hero): Observable<any> | any {
+export function modifyHeroAction(hero: Hero): any {
   return function (dispatch: any): Observable<any> {
     dispatch(modifyHero());
     return heroApi.editHero(hero).pipe(
@@ -166,7 +166,7 @@ export function modifyHeroAction(hero: Hero): Observable<any> | any {
   };
 }
 
-export function removeHeroAction(id: number): Observable<any> | any {
+export function removeHeroAction(id: number): any {
   return function (dispatch: any): Observable<any> {
     dispatch(removeHero());
     return heroApi.removeHero(id).pipe(
