@@ -6,7 +6,6 @@ import { Hero } from "../../models/hero";
 import { HeroApi } from "../../api/hero.api";
 import { addMessage } from "./message.actions";
 import { genId } from "../../utils";
-import { error } from "console";
 
 const heroApi = new HeroApi();
 
