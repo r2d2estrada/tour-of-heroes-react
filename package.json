@@ -27,7 +27,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage=true",
     "eject": "react-scripts eject",
     "server": "json-server --watch data/db.json --port 5000 --middlewares ./node_modules/json-server-reset",
     "start:dev": "concurrently \"npm run server\" \"npm start\""

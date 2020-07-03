@@ -1,6 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import { Provider } from "react-redux";
 import { Dashboard } from ".";
+import { mockStore } from "../../__mocks__/mockStore";
 
 jest.mock("../../redux/actions/hero.actions");
 
@@ -24,7 +26,9 @@ describe("Dashboard", () => {
 
   beforeEach(() => {
     cpnt = renderer.create(
-      <Dashboard heroes={mockData} getHeroes={jest.fn()} />
+      <Provider store={mockStore}>
+        <Dashboard heroes={mockData} getHeroes={jest.fn(() => mockData)} />
+      </Provider>
     );
   });
 

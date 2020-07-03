@@ -1,4 +1,4 @@
-import { store } from "..";
+import { store } from "../redux";
 
 export function genId(): number {
   const { heroes } = store.getState();
