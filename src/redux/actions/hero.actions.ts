@@ -6,6 +6,7 @@ import { Hero } from "../../models/hero";
 import { HeroApi } from "../../api/hero.api";
 import { addMessage } from "./message.actions";
 import { genId } from "../../utils";
+import { error } from "console";
 
 const heroApi = new HeroApi();
 
@@ -104,32 +105,35 @@ function removeHeroError(): Action {
   };
 }
 
-export function getHeroesAction() {
+export function getHeroesAction(): Observable<Hero[]> | any {
   return function (dispatch: any) {
     dispatch(getHeroes());
-    heroApi.getHeroes().subscribe({
-      next: (response: Hero[]) => {
+    return heroApi.getHeroes().pipe(
+      tap((response: Hero[]) => {
         dispatch(getHeroesSuccess(response));
         dispatch(addMessage("get - Hero List"));
-      },
-      error: (error: any) => {
+      }),
+      catchError((error) => {
         dispatch(getHeroesError());
-        throw error;
-      },
-    });
+        throw of(error);
+      })
+    );
   };
 }
 
-export function getSelectedHeroAction(id: number) {
+export function getSelectedHeroAction(id: number): Observable<Hero> | any {
   return function (dispatch: any) {
     dispatch(getSelectedHero());
-    heroApi.getHero(id).subscribe({
-      next: (response: Hero) => {
+    return heroApi.getHero(id).pipe(
+      tap((response: Hero) => {
         dispatch(getSelectedHeroSuccess(response));
         dispatch(addMessage(`get - Hero - id: ${id}`));
-      },
-      error: () => dispatch(getSelectedHeroError()),
-    });
+      }),
+      catchError((error) => {
+        dispatch(getSelectedHeroError());
+        throw of(error);
+      })
+    );
   };
 }
 

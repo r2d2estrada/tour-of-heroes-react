@@ -1,13 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { State } from "../../redux";
 import { getHeroesAction } from "../../redux/actions/hero.actions";
 import { Hero } from "../../models/hero";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import FeaturedHero from "./FeaturedHero";
 import Messages from "../../components/Messages";
 import { useDocumentTitle } from "../../utils/hooks";
 import HeroSearch from "../../components/HeroSearch";
+import { takeUntil } from "rxjs/operators";
 
 interface DashboardProps {
   heroes: Hero[] | any;
@@ -16,14 +18,20 @@ interface DashboardProps {
 
 export const Dashboard: React.FC<DashboardProps> = ({ heroes, getHeroes }) => {
   const [featuredHeroes, setFeaturedHeroes] = useState([]);
+  const unsubscribe$ = new Subject<void>();
 
   useDocumentTitle("Dashboard");
 
   useEffect(() => {
-    if (heroes.length === 0) getHeroes();
+    if (heroes.length === 0)
+      getHeroes().pipe(takeUntil(unsubscribe$)).subscribe();
     else {
       setFeaturedHeroes(heroes.slice(1, 5));
     }
+    return function unsubscribe() {
+      unsubscribe$.next();
+      unsubscribe$.complete();
+    };
   }, [getHeroes, heroes]);
 
   return (

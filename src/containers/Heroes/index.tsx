@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { State } from "../../redux";
@@ -7,6 +8,8 @@ import HeroList from "./HeroList";
 import { useDocumentTitle } from "../../utils/hooks";
 import Messages from "../../components/Messages";
 import HeroListAddHero from "./HeroListAddHero";
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 interface HeroesProps {
   getHeroes: any;
@@ -15,13 +18,18 @@ interface HeroesProps {
 
 const Heroes: React.FC<HeroesProps> = ({ getHeroes, heroes }) => {
   const [showAddModal, setShowAddModal] = useState(false);
+  const unsubscribe$ = new Subject<void>();
 
   useDocumentTitle("Hero List");
 
   useEffect(() => {
     if (heroes.length === 0) {
-      getHeroes();
+      getHeroes().pipe(takeUntil(unsubscribe$)).subscribe();
     }
+    return function cleanup() {
+      unsubscribe$.next();
+      unsubscribe$.complete();
+    };
   }, [getHeroes, heroes]);
 
   const toggleModal = (show: boolean = false): void => {

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, SyntheticEvent } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -11,6 +12,8 @@ import {
 import HeroDetailCard from "./HeroDetailCard";
 import { useDocumentTitle } from "../../utils/hooks";
 import Messages from "../../components/Messages";
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 interface HeroDetailProps {
   selectedHero: Hero | null;
@@ -26,14 +29,21 @@ const HeroDetail: React.FC<HeroDetailProps> = ({
   const { id } = useParams();
   const [hero, setHero]: Hero | any = useState(null);
   const [isUpdating, setIsUpdating] = useState(false);
+  const unsubscribe$ = new Subject<void>();
 
   useDocumentTitle(hero ? hero.name : "hero Detail");
 
   useEffect(() => {
     if (selectedHero === null || (selectedHero && selectedHero.id !== +id)) {
-      getSelectedHero(+id);
+      getSelectedHero(+id)
+        .pipe(takeUntil(unsubscribe$))
+        .subscribe();
     }
     setHero(selectedHero);
+    return function cleanup() {
+      unsubscribe$.next();
+      unsubscribe$.complete();
+    };
   }, [selectedHero, getSelectedHero, id]);
 
   const handleChange = (event: SyntheticEvent | any): void => {
