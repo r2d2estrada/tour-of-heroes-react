@@ -56,6 +56,7 @@ function createDb() {
     fs.writeFileSync(path.join(__dirname, "./db.json"), JSON.stringify(data));
     console.info("Created database success!");
   } else {
+    console.log("Database Found, no action required.");
   }
 }
 
