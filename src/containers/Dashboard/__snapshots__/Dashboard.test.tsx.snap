@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard should match snapshot 1`] = `
+<div
+  className="Dashboard"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-12"
+    >
+      <h2>
+        Featured Heroes
+      </h2>
+    </div>
+  </div>
+  <hr />
+  <div
+    className="row"
+  />
+  <div
+    className="mt-3"
+  >
+    <div
+      className="card hero-search"
+    >
+      <div
+        className="card-header"
+      >
+        <h4>
+          HeroSearch
+        </h4>
+      </div>
+      <div
+        className="card-body"
+      >
+        <div
+          style={
+            Object {
+              "display": "inline-block",
+            }
+          }
+        >
+          <input
+            aria-autocomplete="list"
+            aria-expanded={false}
+            autoComplete="off"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            role="combobox"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="mt-3"
+  >
+    <div
+      className="card"
+    >
+      <div
+        className="card-header"
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="col"
+          >
+            <h4>
+              Messages:
+            </h4>
+          </div>
+          <div
+            className="col text-right"
+          >
+            <button
+              className="btn btn-outline-secondary"
+              onClick={[Function]}
+            >
+              Clear
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        className="card-body"
+      >
+        <ul
+          className="list-group"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

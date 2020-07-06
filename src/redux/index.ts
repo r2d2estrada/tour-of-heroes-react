@@ -24,7 +24,10 @@ export const initialState: State = {
 export default function configureStore() {
   const composeEnhancers =
     process.env.NODE_ENV === "development"
-      ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+      ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+          trace: true,
+          traceLimit: 25,
+        }) || compose
       : compose;
 
   return createStore(
@@ -33,3 +36,5 @@ export default function configureStore() {
     composeEnhancers(applyMiddleware(thunkMiddleware))
   );
 }
+
+export const store = configureStore();
