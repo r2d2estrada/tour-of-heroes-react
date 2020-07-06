@@ -9,7 +9,10 @@ interface MessagesProps {
   clearMessages?: any;
 }
 
-const Messages: React.FC<MessagesProps> = ({ messages, clearMessages }) => {
+export const Messages: React.FC<MessagesProps> = ({
+  messages,
+  clearMessages,
+}) => {
   if (messages)
     return (
       <div className="card">

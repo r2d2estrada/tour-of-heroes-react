@@ -2,7 +2,20 @@ import configureStore from "redux-mock-store";
 import { State } from "../redux";
 
 const initialState: State = {
-  heroes: [],
+  heroes: [
+    {
+      id: 11,
+      name: "Dr. Nice",
+    },
+    {
+      id: 12,
+      name: "Narco",
+    },
+    {
+      id: 13,
+      name: "Mr. Bombastic",
+    },
+  ],
   selectedHero: null,
   messages: [],
 };

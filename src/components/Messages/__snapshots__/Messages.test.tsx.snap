@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Messages should match snapshot 1`] = `
+<div>
+  <div
+    class="card"
+  >
+    <div
+      class="card-header"
+    >
+      <div
+        class="row"
+      >
+        <div
+          class="col"
+        >
+          <h4>
+            Messages:
+          </h4>
+        </div>
+        <div
+          class="col text-right"
+        >
+          <button
+            class="btn btn-outline-secondary"
+          >
+            Clear
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="card-body"
+    >
+      <ul
+        class="list-group"
+      >
+        <li
+          class="list-group-item"
+        >
+          Test 1
+        </li>
+        <li
+          class="list-group-item"
+        >
+          Test 2
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
