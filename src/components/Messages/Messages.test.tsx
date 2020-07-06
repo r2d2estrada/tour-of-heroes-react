@@ -28,4 +28,8 @@ describe("Messages", () => {
     const { container } = render(connected);
     expect(container).toBeTruthy();
   });
+
+  it("should match snapshot", () => {
+    const { container } = render(cpnt);
+  });
 });
