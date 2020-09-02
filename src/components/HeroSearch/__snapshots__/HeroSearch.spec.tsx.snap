@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeroSearch should match snapshot 1`] = `
+<div>
+  <div
+    class="card hero-search"
+  >
+    <div
+      class="card-header"
+    >
+      <h4>
+        HeroSearch
+      </h4>
+    </div>
+    <div
+      class="card-body"
+    >
+      <div
+        style="display: inline-block;"
+      >
+        <input
+          aria-autocomplete="list"
+          aria-expanded="false"
+          autocomplete="off"
+          role="combobox"
+          value=""
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
